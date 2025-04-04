@@ -27,10 +27,10 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
     useEffect(() => {
     }, [user, token]);
 
-    let fullName = `${user.first_name} ${user.last_name}`.trim();
-    if (fullName == ""){
-        fullName = user.username;
-    }
+    // let fullName = `${user.first_name} ${user.last_name}`.trim();
+    // if (fullName == ""){
+    //     fullName = user.username;
+    // }
     const handleLogout = async () => {
         try {
 
@@ -90,7 +90,7 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
             <MenuButton>
                 <Avatar
                     size="md"
-                    name={fullName}
+                    name={'fullName'}
                     cursor="pointer"
                 />
             </MenuButton>

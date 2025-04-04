@@ -9,8 +9,10 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Image,
+    Image, useDisclosure,
 } from "@chakra-ui/react";
+import {FaComment} from "react-icons/fa";
+import DrawerComment from "../specific/Comment/DrawerComment.tsx";
 
 interface Plant {
     name: string;
@@ -29,7 +31,10 @@ interface CardCurrentUserProps {
 }
 
 const CardCurrentUser = ({ plant }: CardCurrentUserProps) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
+        <>
+
         <Card
             position="relative"
             variant="elevation"
@@ -95,10 +100,17 @@ const CardCurrentUser = ({ plant }: CardCurrentUserProps) => {
                             className="fa-solid fa-trash"/>} >
                             Delete
                         </MenuItem>
+                        <MenuItem icon={<FaComment />}
+                                  onClick={onOpen}>
+                            Comment
+                        </MenuItem>
                     </MenuList>
                 </Menu>
             </Flex>
         </Card>
+
+    <DrawerComment isOpen={isOpen} onClose={onClose} />
+</>
     );
 };
 

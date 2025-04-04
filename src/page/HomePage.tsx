@@ -101,9 +101,9 @@ const HomePage = () => {
                         maxW="800px"
                         mx="auto"
                     >
-                        {plants.map((plant) => (
-                            <CardCurrentUser key={plant.id} plant={plant} />
-                        ))}
+                        {/*{plants.map((plant) => (*/}
+                            <CardCurrentUser key={'plant.id'} plant={''} />
+                        {/*))}*/}
                     </Grid>
                     <KPI/>
                 </Flex>
