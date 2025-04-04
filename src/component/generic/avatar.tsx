@@ -35,7 +35,6 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
         try {
 
             const token = localStorage.getItem('authToken');
-//fffffffffffffffffff
             if (!token) {
 
                 navigate("/login");
