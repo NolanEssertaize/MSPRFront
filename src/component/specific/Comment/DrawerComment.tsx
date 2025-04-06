@@ -18,12 +18,12 @@ const DrawerComment = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     const [comment, setComment] = useState("");
 
     const handleCommentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setComment(event.target.value.slice(0, MAX_LENGTH)); // Empêche de dépasser la limite
+        setComment(event.target.value.slice(0, MAX_LENGTH));
     };
 
     const handleSendComment = () => {
         console.log("Commentaire envoyé:", comment);
-        setComment(""); // Réinitialise le champ après l'envoi
+        setComment("");
     };
 
     return (
