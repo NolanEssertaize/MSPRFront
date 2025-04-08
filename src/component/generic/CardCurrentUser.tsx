@@ -140,7 +140,6 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             reader.readAsDataURL(file);
         }
     };
-
     const handleDelete = async () => {
         if (window.confirm(`Êtes-vous sûr de vouloir supprimer ${plant.name} ?`)) {
             try {
@@ -310,8 +309,8 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
                     width="100%"
                 >
                     <Flex align="center" gap="2">
-                        <Avatar name={plant.owner?.username}  />
-                        <Text color="white" fontSize="lg" fontWeight={'bold'}>{plant.owner?.username}</Text>
+                        <Avatar name={plant.owner?._decrypted_username}  />
+                        <Text color="white" fontSize="lg" fontWeight={'bold'}>{plant.owner?._decrypted_username}</Text>
                     </Flex>
 
                     <Menu>

@@ -32,7 +32,7 @@ const useCurrentUserStore = create(
                 })),
         }),
         {
-            name: 'user-storage', // nom utilisé pour le stockage local
+            name: 'user-storage',
         }
     )
 );
