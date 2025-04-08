@@ -39,12 +39,12 @@ const AddModal = ({ isOpen, onClose }: AddModalProps) => {
         }));
     };
 
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
             setSelectedFile(file);
 
-            // Create preview URL
             const url = URL.createObjectURL(file);
             setPreviewUrls([...previewUrls, url]);
         }
@@ -56,7 +56,6 @@ const AddModal = ({ isOpen, onClose }: AddModalProps) => {
 
     const handleSubmit = async () => {
         try {
-            // Construire l'URL avec les paramètres
             const queryParams = new URLSearchParams({
                 name: formData.name,
                 location: formData.location,
@@ -68,7 +67,6 @@ const AddModal = ({ isOpen, onClose }: AddModalProps) => {
                 submitData.append('photo', selectedFile);
             }
 
-            // Pour débugger
             console.log('URL params:', queryParams.toString());
 
             const response = await fetch(`http://localhost:8000/plants/?${queryParams}`, {
@@ -91,7 +89,7 @@ const AddModal = ({ isOpen, onClose }: AddModalProps) => {
                 duration: 3000,
                 isClosable: true,
             });
-
+            window.location.reload();
             onClose();
         } catch (error) {
             toast({

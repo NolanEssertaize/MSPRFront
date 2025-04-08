@@ -29,7 +29,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchPlants = async () => {
             try {
-                const response = await fetch('http://localhost:8000/plants/', {
+                const response = await fetch('http://localhost:8000/my_plants/', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
@@ -101,9 +101,9 @@ const HomePage = () => {
                         maxW="800px"
                         mx="auto"
                     >
-                        {/*{plants.map((plant) => (*/}
-                            <CardCurrentUser key={'plant.id'} plant={''} />
-                        {/*))}*/}
+                        {plants.map((plant) => (
+                            <CardCurrentUser key={'plant.id'} plant={plant} />
+                        ))}
                     </Grid>
                     <KPI/>
                 </Flex>
