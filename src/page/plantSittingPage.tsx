@@ -29,7 +29,7 @@ function PlantsittingPage() {
         const fetchPlants = async () => {
             try {
                 // Vérifier si l'API attend une autre méthode que GET
-                const response = await fetch('http://localhost:8000/care-requests/', {
+                const response = await fetch('http://localhost:8000/all_plants/', {
                     method: 'GET', // Essayer explicitement avec GET
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -40,7 +40,7 @@ function PlantsittingPage() {
 
                 if (response.status === 405) {
                     // Si 405, essayer avec POST (parfois les APIs sont conçues pour recevoir un body vide en POST)
-                    const postResponse = await fetch('http://localhost:8000/care-requests/', {
+                    const postResponse = await fetch('http://localhost:8000/all_plants/', {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,

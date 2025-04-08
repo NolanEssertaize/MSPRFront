@@ -73,8 +73,7 @@ const AddModal = ({ isOpen, onClose }: AddModalProps) => {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                body: submitData // On envoie uniquement la photo dans le body
+                },                body: submitData // On envoie uniquement la photo dans le body
             });
 
             if (!response.ok) {
