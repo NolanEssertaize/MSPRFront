@@ -27,7 +27,9 @@ export const registerUser = async (userData) => {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
+            username: userData.username,
             email: userData.email,
+            phone: userData.phone,
             password: userData.password,
             is_botanist: userData.is_botanist || false
         }),

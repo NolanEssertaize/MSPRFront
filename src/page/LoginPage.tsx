@@ -1,9 +1,7 @@
 import { Box, Flex, Heading, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import useCurrentUserStore from "../store/CurrentUser";
-// import { fetchUserInfo } from "../api/GetUserInfos";
 import {loginUser, registerUser} from "../api/authQuery.ts";
 import {LoginForm} from "../component/specific/login/loginForm.tsx";
 import {RegisterForm} from "../component/specific/login/registerForm.tsx";
@@ -18,6 +16,8 @@ export default function LoginPage() {
     });
     const [formRegisterData, setFormRegisterData] = useState({
         email: "",
+        username:"",
+        phone: "",
         password: "",
         is_botanist: false
     });
@@ -36,7 +36,7 @@ export default function LoginPage() {
         if (isLoginMode) {
             setFormData(prev => ({ ...prev, [name]: value }));
         } else {
-            setFormRegisterData(prev => ({ ...prev, [name]: value }));
+            setFormRegisterData(prev => ({ ...prev, [name]: value }))
         }
     };
 
@@ -122,7 +122,7 @@ export default function LoginPage() {
         >
             <Box
                 width="800px"
-                height="500px"
+                height="600px"
                 bg="rgba(255, 255, 255, 0.1)"
                 backdropFilter="blur(10px)"
                 borderRadius="lg"
@@ -165,7 +165,7 @@ export default function LoginPage() {
                         justifyContent="center"
                         p={8}
                     >
-                        <Heading mb={6} color="white">Créer un compte</Heading>
+                        <Heading mb={6} color="white" pt={5}>Créer un compte</Heading>
                         <RegisterForm
                             formData={formRegisterData}
                             onSubmit={handleRegister}

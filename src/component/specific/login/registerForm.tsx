@@ -27,6 +27,14 @@ export const RegisterForm = ({
                 placeholder="Email"
                 type="email"
             />
+            <FormInput
+                name="phone"
+                value={formData.phone}
+                onChange={onChange}
+                placeholder="Numéro de téléphone"
+                type="phone"
+
+            />
             <PasswordInput
                 name="password"
                 value={formData.password}
