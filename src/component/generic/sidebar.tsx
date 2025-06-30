@@ -26,7 +26,7 @@ function Sidebar() {
             left="0"
             top="0"
             as="nav"
-            w={{ base: "25%", md: "20%", lg: "15%" }}
+            w={{ base: "225", md: "225", lg: "225" }}
             h="100vh"
             bg="black"
             color="white"

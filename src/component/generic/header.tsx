@@ -12,9 +12,9 @@ function Header() {
     return(
         <Box
             top="0"
-            h="10%"
-            ml='15%'
-            w='85%'
+            h="100"
+            ml='250'
+            w='1670px'
             bg='black'
             position="fixed"
             p={4}
@@ -22,7 +22,7 @@ function Header() {
             display='flex'
             zIndex={1000}
         >
-            <Stack w='25%' direction='row' spacing={4} align='center'>
+            <Stack w='400px' direction='row' spacing={4} align='center'>
                 <InputGroup>
                     <Input placeholder="Rechercher..." size="lg" variant='outline'/>
                     <InputRightElement alignItems='center'>
