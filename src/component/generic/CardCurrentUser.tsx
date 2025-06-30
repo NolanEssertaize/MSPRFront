@@ -216,7 +216,7 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             formDataToSend.append("name", formData.name);
             formDataToSend.append("location", formData.location);
             formDataToSend.append("care_instructions", formData.care_instructions);
-            formDataToSend.append("in_care", formData.in_care.toString());
+            // formDataToSend.append("in_care", formData.in_care.toString());
             if (formData.photo) {
                 formDataToSend.append("photo", formData.photo);
             }
@@ -246,6 +246,7 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             if (onUpdate) {
                 onUpdate(updatedPlant);
             }
+            console.log(formDataToSend)
             await fetchPlants();
             onClose();
 

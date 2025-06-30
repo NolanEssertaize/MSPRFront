@@ -66,7 +66,7 @@ const HomePage = () => {
             <Box backdropFilter="blur(10px)" h="100%">
                 <Flex
                     gap="6"
-                    pt={24}
+                    pt={'150px'}
                     overflowY="scroll"
                     h="100%"
                     sx={{

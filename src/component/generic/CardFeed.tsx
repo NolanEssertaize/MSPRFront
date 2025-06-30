@@ -145,15 +145,7 @@ const CardFeed = ({ plant }: PlantProps) => {
                     <Text fontSize="sm" color="gray.600" mb={2}>
                         <b>Lieu:</b> {plant.location}
                     </Text>
-
-                    <Flex justifyContent="space-between" alignItems="center" mt="auto">
-                        <Flex alignItems="center">
-                            <Avatar size="xs" mr={2} name={plant.owner?.username} />
-                            <Text fontSize="sm">{plant.owner?.username}</Text>
-                        </Flex>
-                    </Flex>
                 </CardBody>
-
                 <Flex
                     bg={'#337418'}
                     p="2"
@@ -164,8 +156,8 @@ const CardFeed = ({ plant }: PlantProps) => {
                     width="100%"
                 >
                     <Flex align="center" gap="2">
-                        <Avatar name={plant.owner?.username} />
-                        <Text fontSize="lg" fontWeight={"bold"} color={"white"}>{plant.owner?.username}</Text>
+                        <Avatar name={plant.owner?._decrypted_username} />
+                        <Text fontSize="lg" fontWeight={"bold"} color={"white"}>{plant.owner?._decrypted_username}</Text>
                     </Flex>
                     <IconButton
                         icon={<i className="fa-regular fa-comment-dots" style={{ fontSize: "1.25rem", color: "white" }}></i>}
