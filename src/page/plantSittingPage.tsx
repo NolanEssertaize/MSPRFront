@@ -82,42 +82,41 @@ function PlantsittingPage() {
 
     return (
         <Box
-            w="100vw"
-            h="100vh"
+                ml="250"
+                mt="100"
+                h="90vh"
+                w="90vw"
             bgImage="url(/src/assets/bg.png)"
             bgSize="cover"
             bgAttachment="fixed"
         >
-            <Box backdropFilter="blur(10px)" h="100%">
+            <Box backdropFilter="blur(10px)" h="100%" overflowY="scroll"
+                 sx={{
+                     overflow: 'auto',
+                     position: 'relative',
+                     scrollbarWidth: 'thin',
+                     scrollbarColor: '#888888 #f1f1f1',
+                     '&::-webkit-scrollbar': {
+                         width: '8px',
+                         background: 'transparent',
+                     },
+                     '&::-webkit-scrollbar-track': {
+                         background: '#f1f1f1',
+                         borderRadius: '4px',
+                     },
+                     '&::-webkit-scrollbar-thumb': {
+                         background: '#888888',
+                         borderRadius: '4px',
+                         '&:hover': {
+                             background: '#555555',
+                         },
+                     },
+                     '&::-webkit-scrollbar-button': {
+                         display: 'none',
+                     },
+                 }}>
                 <Flex
-                    gap="6"
-                    pt={24}
-                    overflowY="scroll"
-                    h="100%"
-                    sx={{
-                        overflow: 'auto',
-                        position: 'relative',
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: '#888888 #f1f1f1',
-                        '&::-webkit-scrollbar': {
-                            width: '8px',
-                            background: 'transparent',
-                        },
-                        '&::-webkit-scrollbar-track': {
-                            background: '#f1f1f1',
-                            borderRadius: '4px',
-                        },
-                        '&::-webkit-scrollbar-thumb': {
-                            background: '#888888',
-                            borderRadius: '4px',
-                            '&:hover': {
-                                background: '#555555',
-                            },
-                        },
-                        '&::-webkit-scrollbar-button': {
-                            display: 'none',
-                        },
-                    }}
+
                 >
                     <Grid
                         templateColumns={{
@@ -127,9 +126,8 @@ function PlantsittingPage() {
                             lg: "repeat(4, 1fr)"
                         }}
                         gap="10"
-                        flex="1"
-                        maxW="1000px"
-                        mx="auto"
+                        ml={100}
+                        p={10}
                     >
                         {plants.length > 0 ? (
                             plants.map((plant) => (

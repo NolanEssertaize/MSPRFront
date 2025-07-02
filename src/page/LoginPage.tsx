@@ -1,10 +1,11 @@
-import { Box, Flex, Heading, useToast } from "@chakra-ui/react";
+import {Box, Flex, Heading, Link, useDisclosure, useToast} from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useCurrentUserStore from "../store/CurrentUser";
 import {loginUser, registerUser} from "../api/authQuery.ts";
 import {LoginForm} from "../component/specific/login/loginForm.tsx";
 import {RegisterForm} from "../component/specific/login/registerForm.tsx";
+import ModalRGPD from "../component/specific/RGPDmodale/RGPDModale.tsx";
 
 export default function LoginPage() {
     const [isLoginMode, setIsLoginMode] = useState(true);
@@ -21,7 +22,7 @@ export default function LoginPage() {
         password: "",
         is_botanist: false
     });
-
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
     const toast = useToast();
     const setCurrentUser = useCurrentUserStore(state => state.setCurrentUser);
@@ -155,7 +156,11 @@ export default function LoginPage() {
                             onTogglePassword={() => setShowPassword(!showPassword)}
                             onToggleMode={handleToggleMode}
                         />
+                        <Link onClick={onOpen} color={"darkgreen"}>
+                            Politique de confidentialité
+                        </Link>
                     </Box>
+                    <ModalRGPD isOpen={isOpen} onClose={onClose}/>
                     <Box
                         width="50%"
                         bg="rgba(0, 0, 0, 0.6)"
