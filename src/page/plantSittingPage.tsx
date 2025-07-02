@@ -1,6 +1,7 @@
 import { Box, Grid, Flex, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CardFeed from "../component/generic/CardFeed.tsx";
+import {useParams} from "react-router-dom";
 
 interface Plant {
     name: string;
@@ -17,7 +18,7 @@ interface Plant {
 function PlantsittingPage() {
     const [plants, setPlants] = useState<Plant[]>([]);
     const toast = useToast();
-
+    const { type } = useParams();
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -27,10 +28,10 @@ function PlantsittingPage() {
 
     useEffect(() => {
         const fetchPlants = async () => {
+
             try {
-                // Vérifier si l'API attend une autre méthode que GET
-                const response = await fetch('http://localhost:8000/all_plants/', {
-                    method: 'GET', // Essayer explicitement avec GET
+                    const response = await fetch(`http://localhost:8000/${type}/`,{
+                    method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Content-Type': 'application/json',
@@ -39,7 +40,6 @@ function PlantsittingPage() {
                 });
 
                 if (response.status === 405) {
-                    // Si 405, essayer avec POST (parfois les APIs sont conçues pour recevoir un body vide en POST)
                     const postResponse = await fetch('http://localhost:8000/all_plants/', {
                         method: 'POST',
                         headers: {
@@ -47,7 +47,7 @@ function PlantsittingPage() {
                             'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         },
-                        body: JSON.stringify({}) // Corps vide
+                        body: JSON.stringify({})
                     });
 
                     if (!postResponse.ok) {
@@ -68,7 +68,7 @@ function PlantsittingPage() {
             } catch (error) {
                 console.error("API Error:", error);
                 toast({
-                    title: 'Error fetching plants for plantsitting',
+                    title: 'Error fetching plants',
                     description: error instanceof Error ? error.message : 'Unknown error occurred',
                     status: 'error',
                     duration: 3000,
@@ -78,7 +78,7 @@ function PlantsittingPage() {
         };
 
         fetchPlants();
-    }, [toast]);
+    }, [toast, type]);
 
     return (
         <Box

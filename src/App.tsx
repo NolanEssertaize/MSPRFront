@@ -38,8 +38,9 @@ function App() {
                 <Layout>
                     <Routes>
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/plantsitting" element={<PlantsittingPage />} />
-                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/:type" element={<PlantsittingPage />} />
+                        <Route path="/:type" element={<PlantsittingPage />} />
+                        <Route path="/myplants" element={<HomePage />} />
                         <Route path="/setting" element={<SettingPage />} />
                         <Route path={"/like"} element={<LikePage/>}/>
                     </Routes>

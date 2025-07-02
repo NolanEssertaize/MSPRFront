@@ -56,7 +56,7 @@ export const RegisterForm = ({
                 colorScheme="green"
                 isLoading={isLoading}
                 width="100%"
-                isDisabled={}
+                // isDisabled={}
             >
                 Créer un compte
             </Button>

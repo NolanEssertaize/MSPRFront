@@ -158,9 +158,12 @@ const CardFeed = ({ plant }: PlantProps) => {
                     <Flex align="center" gap="2">
                         <Avatar name={plant.owner?._decrypted_username} />
                         <Text fontSize="lg" fontWeight={"bold"} color={"white"}>{plant.owner?._decrypted_username}</Text>
+                        {plant.owner?.is_botanist && (
+                            <i className="fa-solid fa-circle-check" style={{color: "white"}}></i>
+                        )}
                     </Flex>
                     <IconButton
-                        icon={<i className="fa-regular fa-comment-dots" style={{ fontSize: "1.25rem", color: "white" }}></i>}
+                        icon={<i className="fa-regular fa-comment-dots" style={{fontSize: "1.25rem", color: "white" }}></i>}
                         variant="ghost"
                         onClick={onOpen}
                         colorScheme="green"

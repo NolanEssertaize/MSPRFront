@@ -68,7 +68,7 @@ export default function LoginPage() {
                     isClosable: true,
                 });
 
-                navigate("/home");
+                navigate("/myplants");
             }
         } catch (error) {
             console.error('Erreur de connexion:', error);

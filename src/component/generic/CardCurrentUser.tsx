@@ -25,7 +25,7 @@ import {
     Textarea,
     Button,
     Switch,
-    useDisclosure
+    useDisclosure, Tooltip
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -312,6 +312,11 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
                     <Flex align="center" gap="2">
                         <Avatar name={plant.owner?._decrypted_username}  />
                         <Text color="white" fontSize="lg" fontWeight={'bold'}>{plant.owner?._decrypted_username}</Text>
+                        {plant.owner?.is_botanist && (
+                            <Tooltip label='Botanniste'>
+                                <i className="fa-solid fa-circle-check" style={{color: "white"}}></i>
+                            </Tooltip>
+                        )}
                     </Flex>
 
                     <Menu>
@@ -319,7 +324,7 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
                             as={IconButton}
                             aria-label='Options'
                             icon={<i
-                                className="fa-solid fa-bars" style={{ fontSize: "1.25rem", color: "black" }}/>}
+                                className="fa-solid fa-bars" style={{ fontSize: "1.25rem", color: "white" }}/>}
                             variant={'ghost'}
                         />
                         <MenuList>

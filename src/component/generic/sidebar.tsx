@@ -11,8 +11,9 @@ function Sidebar() {
     const location = useLocation();
 
     const menuItems = [
-        { id: 'home', label: 'Home', icon: 'fa-solid fa-home', href: '/home' },
-        { id: 'plantsitting', label: 'Plantsitting', icon: 'fa-solid fa-seedling', href: '/plantsitting' },
+        { id: 'myplants', label: 'Mes plantes', icon: 'fa-solid fa-home', href: '/myplants' },
+        { id: 'allplants', label: 'Plantes', icon: 'fa-solid fa-seedling', href: '/all_plants' },
+        { id: 'plantscare', label: 'Gardiennage', icon: 'fa-solid fa-seedling', href: '/care-requests' },
         { id: 'setting', label: 'Settings', icon: 'fa-solid fa-gear', href: '/setting' }
     ];
 
