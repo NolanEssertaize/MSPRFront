@@ -2,7 +2,6 @@ import {Box, Flex, Input, InputGroup, InputRightElement, Stack, useDisclosure} f
 import {AddIcon, Search2Icon} from "@chakra-ui/icons";
 import GenericButton from "./genericButton.tsx";
 import AvatarMenu from "./avatar.tsx";
-import img from "../../assets/img.png"
 import AddModal from "../specific/addModal.tsx";
 
 
@@ -37,12 +36,10 @@ function Header() {
                     leftIcon={<AddIcon/>}
                     onClick={onOpen}
                 />
-                <AvatarMenu avatarUrl={img}/>
+                <AvatarMenu/>
 
             </Flex>
-            <AddModal isOpen={isOpen} onClose={onClose}>
-
-            </AddModal>
+            <AddModal isOpen={isOpen} onClose={onClose}/>
         </Box>
     )
 }

@@ -15,7 +15,7 @@ import {FC, useEffect} from "react";
 
 interface AvatarMenuProps {
     avatarUrl?: string;
-    userName?: string;
+    email?: string;
 }
 
 const AvatarMenu: FC<AvatarMenuProps> = () => {
@@ -75,7 +75,7 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
             navigate("/login");
         }
     };
-
+    console.log(user)
     const handleSettingClick = () => {
         navigate("/setting");
     };
@@ -85,7 +85,7 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
             <MenuButton>
                 <Avatar
                     size="md"
-                    name={user.username}
+                    name={user.email}
                     cursor="pointer"
                 />
             </MenuButton>
