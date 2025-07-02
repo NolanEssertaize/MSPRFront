@@ -35,7 +35,7 @@ function KPI () {
                         fill="none"
                         stroke="green.400"
                         strokeWidth="10"
-                        strokeDasharray={`${(4 / 6) * 283} 283`}
+                        strokeDasharray={`${(0/3) * 283} 283`}
                         transform="rotate(-90 50 50)"
                     />
                 </svg>
@@ -51,7 +51,7 @@ function KPI () {
                     textAlign="center"
                 >
                     <Box fontSize="xl" fontWeight="bold">
-                        4/6
+                        0/3
                     </Box>
                     <Box fontSize="sm">Plant confiées</Box>
                 </Flex>
