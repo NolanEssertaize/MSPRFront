@@ -8,7 +8,6 @@ import {
     useDisclosure,
     Image,
     Heading,
-    Badge,
     useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -31,7 +30,7 @@ interface Plant {
     photo_url: string;
     owner_id: number;
     created_at: string;
-    in_care: boolean;
+    in_care_id: number;
     plant_sitting: number | null;
     owner?: Owner;
 }
@@ -42,27 +41,32 @@ interface PlantProps {
 
 const CardFeed = ({ plant }: PlantProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isLiked, setIsLiked] = useState(plant.in_care);
+    const [isCare,setIsCare] = useState(false);
     const toast = useToast();
 
     const handleHeartClick = async () => {
-        const endpoint = isLiked
-            ? `http://localhost:8000/plants/${plant.id}/start-care`
-            : `http://localhost:8000/plants/${plant.id}/end-care`;
+        if (plant.in_care_id === null ){
+            setIsCare(false)
+        }
+        else{
+            setIsCare(true)
+        }
+        const endpoint = isCare
+            ? `http://localhost:8000/plants/${plant.id}/end-care`
+            : `http://localhost:8000/plants/${plant.id}/start-care`;
 
         try {
             const response = await fetch(endpoint, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer YOUR_TOKEN`,
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
 
             if (response.ok) {
-                setIsLiked(!isLiked);
                 toast({
-                    title: isLiked ? "Soin terminé." : "Soin démarré.",
+                    title: isCare ? "Soin terminé." : "Soin démarré.",
                     status: "success",
                     duration: 2000,
                     isClosable: true,
@@ -105,10 +109,10 @@ const CardFeed = ({ plant }: PlantProps) => {
                 <IconButton
                     icon={
                         <i
-                            className={`fa-${isLiked ? "solid" : "regular"} fa-heart`}
+                            className={`fa-${isCare ? "solid" : "regular"} fa-heart`}
                             style={{
                                 fontSize: "1.25rem",
-                                color: isLiked ? "red" : "black",
+                                color: isCare ? "red" : "black",
                             }}
                         ></i>
                     }
@@ -138,9 +142,6 @@ const CardFeed = ({ plant }: PlantProps) => {
                     />
                     <Heading size="md" mb={1}>{plant.name}</Heading>
 
-                    {isLiked && (
-                        <Badge colorScheme="blue" mb={2}>En attente</Badge>
-                    )}
 
                     <Text fontSize="sm" color="gray.600" mb={2}>
                         <b>Lieu:</b> {plant.location}

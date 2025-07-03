@@ -2,6 +2,7 @@ import { Box, Grid, Flex, useToast } from "@chakra-ui/react";
 import CardCurrentUser from "../component/generic/CardCurrentUser.tsx";
 import { useEffect, useState } from "react";
 import KPI from "../component/specific/StatOverlay/KPI.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface Plant {
     name: string;
@@ -18,6 +19,7 @@ interface Plant {
 const HomePage = () => {
     const [plants, setPlants] = useState<Plant[]>([]);
     const toast = useToast();
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -34,13 +36,25 @@ const HomePage = () => {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
                 });
-
+                if (response.status === 401) {
+                    toast({
+                        title: "Session expirée",
+                        description: "Veuillez vous reconnecter.",
+                        status: "warning",
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                    navigate("/login");
+                    return;
+                }
                 if (!response.ok) {
                     throw new Error('Failed to fetch plants');
                 }
 
                 const data = await response.json();
                 setPlants(data);
+
+
             } catch (error) {
                 toast({
                     title: 'Error fetching plants',

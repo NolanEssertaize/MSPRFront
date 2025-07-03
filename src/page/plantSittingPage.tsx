@@ -1,7 +1,7 @@
 import { Box, Grid, Flex, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CardFeed from "../component/generic/CardFeed.tsx";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 interface Plant {
     name: string;
@@ -19,6 +19,7 @@ function PlantsittingPage() {
     const [plants, setPlants] = useState<Plant[]>([]);
     const toast = useToast();
     const { type } = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -49,7 +50,17 @@ function PlantsittingPage() {
                         },
                         body: JSON.stringify({})
                     });
-
+                if (response.status === 401) {
+                    toast({
+                        title: "Session expirée",
+                        description: "Veuillez vous reconnecter.",
+                        status: "warning",
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                    navigate("/login");
+                    return;
+                }
                     if (!postResponse.ok) {
                         throw new Error(`Failed with status: ${postResponse.status}`);
                     }

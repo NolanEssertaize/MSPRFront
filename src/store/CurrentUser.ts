@@ -1,14 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-const useCurrentUserStore = create(
+const  useCurrentUserStore = create(
     persist(
         (set) => ({
             user: null,
             token: null,
             isAuthenticated: false,
-
-            // Définir l'utilisateur et le token après la connexion
             setCurrentUser: (userData, token) =>
                 set({
                     user: userData,
@@ -16,7 +14,6 @@ const useCurrentUserStore = create(
                     isAuthenticated: true,
                 }),
 
-            // Déconnexion
             logout: () =>
                 set({
                     user: null,
@@ -24,7 +21,6 @@ const useCurrentUserStore = create(
                     isAuthenticated: false,
                 }),
 
-            // Mettre à jour les informations de l'utilisateur
             updateUser: (userData) =>
                 set((state) => ({
                     ...state,

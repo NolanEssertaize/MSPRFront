@@ -23,7 +23,7 @@ const AvatarMenu: FC<AvatarMenuProps> = () => {
     const toast = useToast();
     const user = useCurrentUserStore(state => state.user);
     const token = useCurrentUserStore(state => state.token);
-
+    console.log(user)
     useEffect(() => {
     }, [user, token]);
 

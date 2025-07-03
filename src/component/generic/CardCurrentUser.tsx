@@ -28,6 +28,7 @@ import {
     useDisclosure, Tooltip
 } from "@chakra-ui/react";
 import { useState } from "react";
+import DrawerComment from "../specific/Comment/DrawerComment.tsx";
 
 interface Owner {
     email: string;
@@ -58,7 +59,8 @@ interface CardCurrentUserProps {
 
 const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
     const toast = useToast();
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen : updateIsOpen , onOpen : updateOnOpen, onClose : updateOnClose } = useDisclosure();
+    const { isOpen : commentIsOpen , onOpen : commentOnOpen, onClose : commentOnClose } = useDisclosure();
 
     const [formData, setFormData] = useState({
         name: plant.name,
@@ -216,7 +218,6 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             formDataToSend.append("name", formData.name);
             formDataToSend.append("location", formData.location);
             formDataToSend.append("care_instructions", formData.care_instructions);
-            // formDataToSend.append("in_care", formData.in_care.toString());
             if (formData.photo) {
                 formDataToSend.append("photo", formData.photo);
             }
@@ -246,9 +247,8 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             if (onUpdate) {
                 onUpdate(updatedPlant);
             }
-            console.log(formDataToSend)
             await fetchPlants();
-            onClose();
+            updateOnClose();
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "Une erreur inconnue est survenue";
@@ -330,15 +330,21 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
                         <MenuList>
                             <MenuItem
                                 icon={<i className="fa-solid fa-pen"/>}
-                                onClick={onOpen}
+                                onClick={updateOnOpen}
                             >
-                                Edit
+                                Modifier
                             </MenuItem>
                             <MenuItem
                                 icon={<i className="fa-solid fa-trash"/>}
                                 onClick={handleDelete}
                             >
-                                Delete
+                                Supprimer
+                            </MenuItem>
+                            <MenuItem
+                                icon={<i className="fa-regular fa-comment-dots"/>}
+                                onClick={commentOnOpen}
+                            >
+                                Commentaire
                             </MenuItem>
                         </MenuList>
                     </Menu>
@@ -346,7 +352,7 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
             </Card>
 
             {/* Edit Modal */}
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={updateIsOpen} onClose={updateOnClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Modifier {plant.name}</ModalHeader>
@@ -414,13 +420,14 @@ const CardCurrentUser = ({ plant, onUpdate }: CardCurrentUserProps) => {
                             </FormControl>
 
                             <Flex justify="flex-end" gap={3} mt={6}>
-                                <Button variant="ghost" onClick={onClose}>Annuler</Button>
+                                <Button variant="ghost" onClick={updateOnClose}>Annuler</Button>
                                 <Button colorScheme="green" type="submit">Enregistrer</Button>
                             </Flex>
                         </form>
                     </ModalBody>
                 </ModalContent>
             </Modal>
+            <DrawerComment isOpen={commentIsOpen} onClose={commentOnClose} plantId={plant.id} />
         </>
     );
 };

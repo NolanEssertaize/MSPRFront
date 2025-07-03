@@ -23,7 +23,7 @@ function Sidebar() {
 
     return (
         <Box
-            position="fixed"
+            position="absolute"
             left="0"
             top="0"
             as="nav"
