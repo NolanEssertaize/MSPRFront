@@ -1,4 +1,4 @@
-import { VStack, Button, Text } from "@chakra-ui/react";
+import {VStack, Button, Text, Checkbox} from "@chakra-ui/react";
 import {FormInput} from "./formInput.tsx";
 import {PasswordInput} from "./passwordInput.tsx";
 
@@ -51,12 +51,25 @@ export const RegisterForm = ({
                 showPassword={showPassword}
                 onTogglePassword={onTogglePassword}
             />
+            <Checkbox
+                isChecked={formData.is_botanist}
+                onChange={(e) =>
+                    onChange({
+                        target: {
+                            name: "is_botanist",
+                            value: e.target.checked,
+                        },
+                    })
+                }
+                color="white"
+            >
+                Je suis botaniste
+            </Checkbox>
             <Button
                 type="submit"
                 colorScheme="green"
                 isLoading={isLoading}
                 width="100%"
-                // isDisabled={}
             >
                 Créer un compte
             </Button>

@@ -1,8 +1,7 @@
-import {Box, Button, Flex} from "@chakra-ui/react";
-import {useNavigate} from "react-router-dom";
+import {Box, Flex} from "@chakra-ui/react";
+
 
 function KPI () {
-    const navigate = useNavigate();
     return (
         <Box
             bg="blackAlpha.900"
@@ -55,11 +54,6 @@ function KPI () {
                     </Box>
                     <Box fontSize="sm">Plant confiées</Box>
                 </Flex>
-            </Box>
-            <Box p={12} mx="auto">
-                <Button leftIcon={<i className="fa-solid fa-heart"></i>} color={'#337418'} onClick={() => navigate('/like')}>
-                    Liked post
-                </Button>
             </Box>
         </Box>
     )

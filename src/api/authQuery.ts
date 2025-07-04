@@ -31,7 +31,7 @@ export const registerUser = async (userData) => {
             email: userData.email,
             phone: userData.phone,
             password: userData.password,
-            is_botanist: userData.is_botanist || false
+            is_botanist: userData.is_botanist
         }),
         credentials: 'include',
         mode: 'cors'
